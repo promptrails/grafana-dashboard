@@ -24,15 +24,14 @@ cp .env.example .env
 # 3. Start
 docker-compose up -d
 
-# 4. Configure datasource
-./setup.sh
-
-# 5. Open
+# 4. Open
 open http://localhost:3333
 # Login: admin / admin
 ```
 
-Dashboards are auto-provisioned in the **PromptRails** folder.
+Dashboards are auto-provisioned in the **PromptRails** folder. The Docker setup also re-applies the datasource on startup so changes to `PROMPTRAILS_API_KEY` don't get stuck in Grafana's persisted volume.
+
+Use this path if you want the lowest-friction setup. It is the supported reference deployment.
 
 ## Manual Import (Existing Grafana)
 
@@ -50,7 +49,7 @@ Or install from Grafana UI: Configuration > Plugins > Search "Infinity"
 
 1. Go to Connections > Data Sources > Add data source
 2. Search for **Infinity**
-3. Set **Name** to `PromptRails`
+3. Create an Infinity datasource with your preferred name
 4. Under **Custom HTTP Headers**, add:
    - Header: `X-API-Key`
    - Value: Your PromptRails API key
@@ -60,9 +59,18 @@ Or install from Grafana UI: Configuration > Plugins > Search "Infinity"
 ### 3. Import Dashboards
 
 1. Go to Dashboards > Import
-2. Upload JSON files from the `dashboards/` folder:
+2. Upload JSON files from the `exports/` folder:
    - `overview.json` — Main overview dashboard
    - `cost-analysis.json` — Cost breakdown dashboard
+3. When Grafana asks for `PromptRails`, select the Infinity datasource you created in the previous step
+
+The `dashboards/` folder is reserved for Docker/provisioning. The `exports/` folder contains import-friendly dashboards that prompt for a datasource during import.
+
+## Repository Layout
+
+- `dashboards/` — Provisioned dashboards used by the Docker setup
+- `exports/` — Dashboards to import into an existing Grafana instance
+- `provisioning/` — Grafana provisioning files for the Docker setup
 
 ## Dashboard Variables
 
@@ -111,6 +119,28 @@ Or install from Grafana UI: Configuration > Plugins > Search "Infinity"
 - Grafana 10+ (tested with 11.4)
 - [Infinity Datasource Plugin](https://grafana.com/grafana/plugins/yesoreyeram-infinity-datasource/)
 - PromptRails API key
+
+## Troubleshooting
+
+### `requested URL not allowed`
+
+If Query Inspector also shows a real upstream response like `responseCodeFromServer: 401`, the URL allowlist is probably already correct and the actual problem is authentication.
+
+Check:
+
+1. `Connections > Data Sources > <your Infinity datasource> > Security > Allowed Hosts` contains `api.promptrails.ai`
+2. `Connections > Data Sources > <your Infinity datasource> > Custom HTTP Headers` has `X-API-Key`
+3. The header value is your current `PROMPTRAILS_API_KEY`
+
+If you imported from `exports/`, also confirm the dashboard was mapped to the correct Infinity datasource during import.
+
+For Docker installs, re-run:
+
+```bash
+docker-compose up -d
+```
+
+Grafana keeps datasource state in the `grafana-data` volume, so an old API key can survive container restarts unless the datasource is updated again.
 
 ## License
 

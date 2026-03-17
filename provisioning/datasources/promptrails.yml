@@ -9,7 +9,7 @@ datasources:
     isDefault: true
     jsonData:
       allowedHosts:
-        - "api.promptrails.ai"
+        - "https://api.promptrails.ai"
       httpHeaderName1: "X-API-Key"
     secureJsonData:
       httpHeaderValue1: "${PROMPTRAILS_API_KEY}"
