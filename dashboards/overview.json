@@ -1,0 +1,895 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "links": [],
+  "panels": [
+    {
+      "title": "Total Executions",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.overview",
+          "columns": [
+            {
+              "selector": "total_executions",
+              "text": "Total Executions",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "blue"
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      }
+    },
+    {
+      "title": "Total Cost",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.overview",
+          "columns": [
+            {
+              "selector": "total_cost",
+              "text": "Total Cost",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyUSD",
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "green"
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      }
+    },
+    {
+      "title": "Total Tokens",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.overview",
+          "columns": [
+            {
+              "selector": "total_tokens",
+              "text": "Total Tokens",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          },
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "purple"
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      }
+    },
+    {
+      "title": "Error Count",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.overview",
+          "columns": [
+            {
+              "selector": "error_count",
+              "text": "Errors",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 5
+              },
+              {
+                "color": "red",
+                "value": 20
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      }
+    },
+    {
+      "title": "Avg Latency",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 0
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.overview",
+          "columns": [
+            {
+              "selector": "avg_duration_ms",
+              "text": "Avg Duration",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 3000
+              },
+              {
+                "color": "red",
+                "value": 10000
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      }
+    },
+    {
+      "title": "Active Agents",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.overview",
+          "columns": [
+            {
+              "selector": "total_agents",
+              "text": "Agents",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          },
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "orange"
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      }
+    },
+    {
+      "title": "Executions Over Time",
+      "type": "barchart",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.executions_by_day",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "count",
+              "text": "Executions",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "blue"
+          }
+        }
+      },
+      "options": {
+        "barWidth": 0.8,
+        "showValue": "auto",
+        "stacking": "none"
+      }
+    },
+    {
+      "title": "Cost Over Time",
+      "type": "barchart",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.cost_by_day",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "cost",
+              "text": "Cost ($)",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyUSD",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "green"
+          }
+        }
+      },
+      "options": {
+        "barWidth": 0.8,
+        "showValue": "auto"
+      }
+    },
+    {
+      "title": "Error Rate Over Time",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 12
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.error_rate",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "error_rate",
+              "text": "Error Rate (%)",
+              "type": "number"
+            },
+            {
+              "selector": "total",
+              "text": "Total",
+              "type": "number"
+            },
+            {
+              "selector": "errors",
+              "text": "Errors",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "lineWidth": 2
+          },
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "red"
+          },
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 5
+              },
+              {
+                "color": "red",
+                "value": 15
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Errors"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Agent Usage",
+      "type": "table",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 12
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.agent_usage",
+          "columns": [
+            {
+              "selector": "agent_name",
+              "text": "Agent",
+              "type": "string"
+            },
+            {
+              "selector": "executions",
+              "text": "Executions",
+              "type": "number"
+            },
+            {
+              "selector": "total_cost",
+              "text": "Cost ($)",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Cost ($)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "currencyUSD"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Executions by Agent",
+      "type": "piechart",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 20
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.agent_usage",
+          "columns": [
+            {
+              "selector": "agent_name",
+              "text": "Agent",
+              "type": "string"
+            },
+            {
+              "selector": "executions",
+              "text": "Executions",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "options": {
+        "pieType": "donut",
+        "legendPlacement": "right"
+      }
+    },
+    {
+      "title": "Cost by Agent",
+      "type": "piechart",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 20
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.agent_usage",
+          "columns": [
+            {
+              "selector": "agent_name",
+              "text": "Agent",
+              "type": "string"
+            },
+            {
+              "selector": "total_cost",
+              "text": "Cost ($)",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyUSD"
+        }
+      },
+      "options": {
+        "pieType": "donut",
+        "legendPlacement": "right"
+      }
+    },
+    {
+      "title": "Model Usage",
+      "type": "table",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 20
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.model_usage",
+          "columns": [
+            {
+              "selector": "model_name",
+              "text": "Model",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Requests",
+              "type": "number"
+            },
+            {
+              "selector": "total_cost",
+              "text": "Cost ($)",
+              "type": "number"
+            },
+            {
+              "selector": "total_tokens",
+              "text": "Tokens",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Cost ($)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "currencyUSD"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Score Trends",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "promptrails"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "url": "https://api.promptrails.ai/api/v1/dashboard/metrics?days=${days}",
+          "url_options": {
+            "method": "GET"
+          },
+          "root_selector": "data.score_trends",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "timestamp"
+            },
+            {
+              "selector": "name",
+              "text": "Score",
+              "type": "string"
+            },
+            {
+              "selector": "average",
+              "text": "Average",
+              "type": "number"
+            },
+            {
+              "selector": "count",
+              "text": "Count",
+              "type": "number"
+            }
+          ],
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "lineWidth": 2,
+            "pointSize": 5
+          }
+        }
+      }
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "tags": [
+    "promptrails",
+    "ai",
+    "llm"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "30",
+          "value": "30"
+        },
+        "name": "days",
+        "type": "custom",
+        "query": "7,14,30,60,90",
+        "label": "Time Range (days)"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "title": "PromptRails Overview",
+  "uid": "promptrails-overview"
+}
