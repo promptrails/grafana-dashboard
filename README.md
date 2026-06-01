@@ -5,10 +5,10 @@ Pre-built Grafana dashboards for monitoring your PromptRails AI agents, prompts,
 ## Dashboards
 
 ### Overview
-Execution trends, error rates, agent usage, model distribution, and score trends.
+Execution trends, error rates, agent usage, model distribution, score trends, and prompt-cache hit rate.
 
 ### Cost Analysis
-Cost breakdown by agent and model, daily cost trends, token usage details.
+Cost breakdown by agent and model, daily cost trends, token usage details, and prompt-cache hit rate, savings, and token trends.
 
 ## Quick Start (Docker)
 
